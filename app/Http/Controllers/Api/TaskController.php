@@ -26,7 +26,7 @@ class TaskController extends Controller
         return response()->json([
             'data' => $tasks,
             'success' => true
-        ]);
+        ], 200);
     }
 
     public function show($id): ?object
@@ -38,7 +38,7 @@ class TaskController extends Controller
         return response()->json([
             'data' => $task,
             'success' => true
-        ]);
+        ], 200);
     }
 
     public function store(StoreTaskRequest $request): object
@@ -52,7 +52,7 @@ class TaskController extends Controller
         return response()->json([
             'message' => 'Task created successfully',
             'success' => true
-        ]);
+        ], 201);
     }
 
     public function update(UpdateTaskRequest $request, $id): object
@@ -66,7 +66,7 @@ class TaskController extends Controller
         return response()->json([
             'message' => 'Task updated successfully',
             'success' => true
-        ]);
+        ], 200);
     }
 
     public function destroy($id): object
@@ -78,6 +78,6 @@ class TaskController extends Controller
         return response()->json([
             'message' => 'Task deleted successfully',
             'success' => true
-        ]);
+        ], 200);
     }
 }
