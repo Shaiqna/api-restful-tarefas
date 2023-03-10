@@ -29,4 +29,10 @@ class UpdateTaskRequest extends FormRequest
             'completed' => 'required|integer',
         ];
     }
+
+    protected function failedValidation(Validator $validator)
+    {
+        $response = new Response(['error' => $validator->errors()->first()], 422);
+        throw new ValidationException($validator, $response);
+    }
 }
