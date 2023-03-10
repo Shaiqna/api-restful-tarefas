@@ -5,6 +5,7 @@ namespace App\Http\Requests\Auth;
 use Illuminate\Http\Response;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Contracts\Validation\Validator;
 
 class LoginRequest extends FormRequest
 {
@@ -31,7 +32,7 @@ class LoginRequest extends FormRequest
         ];
     }
 
-    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
+    protected function failedValidation(Validator $validator)
     {
         $response = new Response(['error' => $validator->errors()->first()], 422);
         throw new ValidationException($validator, $response);
