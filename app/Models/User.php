@@ -8,6 +8,12 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
+/**
+ * @OA\Schema(
+ *     schema="User"
+ * )
+*/
+
 class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -41,6 +47,42 @@ class User extends Authenticatable implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * @OA\Property(
+     *     property="name",
+     *     type="string",
+     *     example="John Doe"
+     * )
+     *
+     * @var string
+    */
+
+    public $name;
+
+    /**
+     * @OA\Property(
+     *     property="email",
+     *     type="string",
+     *     example="johndoe@email.com"
+     * )
+     *
+     * @var string
+    */
+
+    public $email;
+
+    /**
+     * @OA\Property(
+     *     property="password",
+     *     type="string",
+     *     example="12345678910"
+     * )
+     *
+     * @var string
+    */
+
+    public $password;
 
     public function getJWTIdentifier()
     {
