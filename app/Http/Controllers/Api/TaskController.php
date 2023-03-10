@@ -44,6 +44,9 @@ class TaskController extends Controller
     public function store(StoreTaskRequest $request): object
     {
         $data = $request->validated();
+        $data['user_id'] = auth()->user()->id;
+        $data['created_at'] = now();
+        $data['updated_at'] = now();
 
         $task = $this->taskService->createTask($data);
 
@@ -58,6 +61,8 @@ class TaskController extends Controller
     public function update(UpdateTaskRequest $request, $id): object
     {
         $data = $request->validated();
+        $data['user_id'] = auth()->user()->id;
+        $data['updated_at'] = now();
 
         $response = $this->taskService->updateTask($data, $id);
 
@@ -78,6 +83,6 @@ class TaskController extends Controller
         return response()->json([
             'message' => 'Task deleted successfully',
             'success' => true
-        ], 200);
+        ], 204);
     }
 }

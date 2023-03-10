@@ -26,18 +26,11 @@ class TaskService
 
     public function createTask(array $data): bool
     {
-        $data['user_id'] = auth()->user()->id;
-        $data['created_at'] = now();
-        $data['updated_at'] = now();
-
         return $this->taskRepository->createTask($data);
     }
 
     public function updateTask(array $data, int $id): bool
     {
-        $data['user_id'] = auth()->user()->id;
-        $data['updated_at'] = now();
-
         $task = $this->taskRepository->findById($id);
 
         if (!$task) return false;
