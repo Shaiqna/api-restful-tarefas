@@ -28,7 +28,7 @@ Gerar uma nova chave de aplicativo
 
 Gere uma nova chave de autenticação JWT
 
-    php artisan jwt:generate
+    php artisan jwt:secret
 
 Execute as migrações do banco de dados (**Defina a conexão do banco de dados em .env antes de migrar**)
 
