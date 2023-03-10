@@ -1,64 +1,99 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Começando
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Instalação
 
-## About Laravel
+Verifique o guia de instalação oficial do laravel para obter os requisitos do servidor antes de começar. [Documentação oficial](https://laravel.com/docs/5.4/installation#installation)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Clone o repositório
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+    git clone git@github.com:Shaiqna/api-restful-tarefas.git
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Entre na pasta do repositório
 
-## Learning Laravel
+    cd api-restful-tarefas
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Instale todas as dependências usando o composer
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    composer install
 
-## Laravel Sponsors
+Copie o arquivo env de exemplo e faça as alterações de configuração necessárias no arquivo .env
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+    cp .env.example .env
 
-### Premium Partners
+Gerar uma nova chave de aplicativo
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+    php artisan key:generate
 
-## Contributing
+Gere uma nova chave de autenticação JWT
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    php artisan jwt:generate
 
-## Code of Conduct
+Execute as migrações do banco de dados (**Defina a conexão do banco de dados em .env antes de migrar**)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    php artisan migrate
 
-## Security Vulnerabilities
+Inicie o servidor de desenvolvimento local
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    php artisan serve
 
-## License
+Agora você pode acessar o servidor em http://127.0.0.1:8000
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Lista de comandos**
+
+    git clone git@github.com:Shaiqna/api-restful-tarefas.git
+    cd api-restful-tarefas
+    composer install
+    cp .env.example .env
+    php artisan key:generate
+    php artisan jwt:generate 
+    
+**Certifique-se de definir as informações de conexão de banco de dados corretas antes de executar as migrações** [Environment variables](#environment-variables)
+
+    php artisan migrate
+    php artisan serve
+
+## Dependencies
+
+- [jwt-auth](https://github.com/tymondesigns/jwt-auth) - Para autenticação usando JSON Web Tokens
+- [L5 Swagger](https://github.com/DarkaOnLine/L5-Swagger) - Para documentação da api
+
+## Environment variables
+
+- `.env` - As variáveis de ambiente podem ser definidas neste arquivo
+
+***Note*** : Você pode definir rapidamente as informações do banco de dados e outras variáveis ​​neste arquivo e fazer com que o aplicativo funcione totalmente.
+
+----------
+
+# Testing API
+
+Execute o servidor de desenvolvimento laravel
+
+    php artisan serve
+
+A API agora pode ser acessada em
+
+    http://127.0.0.1:8000/api
+    
+Para visualizar a documentação da api acesse
+    
+    http://127.0.0.1:8000/api/documentation
+
+Request headers
+
+| **Required** 	| **Key**              	| **Value**            	|
+|----------	|------------------	|------------------	|
+| Yes      	| Content-Type     	| application/json 	|
+| Yes      	| X-Requested-With 	| XMLHttpRequest   	|
+| Yes 	    | Authorization    	| Token {JWT}      	|
+
+Consulte a [especificação da API](#especificacao-da-api) para obter mais informações.
+
+----------
+ 
+# Autenticação
+ 
+Este aplicativo usa o JSON Web Token (JWT) para lidar com a autenticação. O token é passado com cada solicitação usando o cabeçalho `Authorization` com o esquema `Token`. O middleware de autenticação JWT lida com a validação e autenticação do token. Verifique as fontes a seguir para saber mais sobre o JWT.
+ 
+- https://jwt.io/introduction/
+- https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html
