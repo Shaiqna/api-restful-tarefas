@@ -2,6 +2,8 @@
 
 ## Instalação
 
+***Note*** : A versão do PHP utilizada nesse projeto foi a 8.
+
 Verifique o guia de instalação oficial do laravel para obter os requisitos do servidor antes de começar. [Documentação oficial](https://laravel.com/docs/5.4/installation#installation)
 
 Clone o repositório
@@ -61,7 +63,7 @@ Agora você pode acessar o servidor em http://127.0.0.1:8000
 
 - `.env` - As variáveis de ambiente podem ser definidas neste arquivo
 
-***Note*** : Você pode definir rapidamente as informações do banco de dados e outras variáveis ​​neste arquivo e fazer com que o aplicativo funcione totalmente.
+***Note*** : Você pode definir rapidamente as informações do banco de dados e outras variáveis neste arquivo e fazer com que o aplicativo funcione totalmente.
 
 ----------
 
